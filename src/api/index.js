@@ -14,9 +14,5 @@ export function configureAxios() {
 export function fetchCharacters() {
     const url = '/characters?apikey=' + PUBLIC_API_KEY
 
-    return axios.get(url).then((response) => {
-        console.log('OK: ', response)
-    }).catch((error) => {
-        console.log('NOK: ', error)
-    })
+    return axios.get(url)
 }
