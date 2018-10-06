@@ -8,6 +8,7 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
+import * as api from '../api/'
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -18,6 +19,15 @@ const instructions = Platform.select({
 
 type Props = {};
 export default class App extends Component<Props> {
+
+  componentWillMount() {
+    api.configureAxios()
+  }
+
+  componentDidMount() {
+    api.fetchCharacters()
+  }
+
   render() {
     return (
       <View style={styles.container}>
