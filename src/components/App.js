@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { StatusBar } from 'react-native'
 import { Router, Scene, Stack } from 'react-native-router-flux'
-import { Characters } from './sections/'
+import { Characters, CharacterDetail } from './sections/'
 import * as api from '../api/'
 
 import { createStore, applyMiddleware, combineReducers } from 'redux'
@@ -14,6 +14,13 @@ const store = createStore(
     reducer,
     applyMiddleware(thunk.withExtraArgument(api))
 )
+
+const sceneDefaultStyles = {
+    navigationBarStyle: { backgroundColor: 'rgb(144,39,23)'},
+    backButtonTintColor: 'white',
+    backButtonTextStyle: { color: 'white' },
+    titleStyle: { color: 'white' },
+}
 
 export default class App extends Component {
  
@@ -32,6 +39,11 @@ export default class App extends Component {
                             component={Characters} 
                             hideNavBar={true} 
                             initial={true}
+                        />
+                        <Scene 
+                            key={'characterDetail'}
+                            component={CharacterDetail}
+                            {...sceneDefaultStyles}
                         />
                     </Stack>
                 </Router>
