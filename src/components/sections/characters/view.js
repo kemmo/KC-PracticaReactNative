@@ -1,10 +1,20 @@
 import React, { Component } from 'react'
-import { View, FlatList, ActivityIndicator, Image } from 'react-native'
+import { View, FlatList, ActivityIndicator, Image, TouchableOpacity, Text } from 'react-native'
 import { CharacterCell  } from '../../widgets/'
 import styles from './styles'
 import { connect } from 'react-redux'
 import * as CharactersActions from '../../../redux/characters/actions'
 import { Actions } from 'react-native-router-flux'
+
+const RightButton = props => (
+    <TouchableOpacity onPress={ () => Actions.register() }>
+        <Text style={{color: 'white', 
+                      fontWeight: 'bold',
+                      height: '100%', 
+                      width: '100%', 
+                      fontSize: 20}}>{'Registro'}</Text>
+    </TouchableOpacity>
+)
 
 class Characters extends Component {
 
@@ -42,11 +52,15 @@ class Characters extends Component {
         return (
             <View style={styles.container}>
 
-               <Image
-                    source={image}
-                    style={{ height: '15%', width: '100%', marginTop: 40 }}
-                    resizeMode={'contain'}
-                />
+                <View style={styles.headerContainer}>
+                    <Image
+                        source={image}
+                        style={{ height: '100%', width: '75%' }}
+                        resizeMode={'cover'}
+                    />
+
+                    <RightButton />
+                </View>
 
                 <FlatList
                     data={this.props.list}
@@ -54,7 +68,7 @@ class Characters extends Component {
                     keyExtractor={ (item, i) => 'cell' + item.id }
                     extraData={this.props}
                     numColumns={2}
-                    style={{marginTop: 20}}
+                    style={styles.listContainer}
                 />
 
                 { this._renderActivityIndicator() }     

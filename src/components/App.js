@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { StatusBar } from 'react-native'
 import { Router, Scene, Stack } from 'react-native-router-flux'
-import { Characters, CharacterDetail } from './sections/'
+import { Characters, CharacterDetail, Register } from './sections/'
 import * as api from '../api/'
 
 import { createStore, applyMiddleware, combineReducers } from 'redux'
@@ -43,6 +43,12 @@ export default class App extends Component {
                         <Scene 
                             key={'characterDetail'}
                             component={CharacterDetail}
+                            {...sceneDefaultStyles}
+                        />
+                        <Scene 
+                            key={'register'}
+                            component={Register}
+                            title={'Registro de usuario'}
                             {...sceneDefaultStyles}
                         />
                     </Stack>
