@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, FlatList, ActivityIndicator } from 'react-native'
+import { View, FlatList, ActivityIndicator, Image } from 'react-native'
 import { CharacterCell  } from '../../widgets/'
 import styles from './styles'
 import { connect } from 'react-redux'
@@ -36,15 +36,24 @@ class Characters extends Component {
     }
 
     render() {
+        const image = require('../../../resources/marvel-logo.jpg')
+
         return (
             <View style={styles.container}>
+
+               <Image
+                    source={image}
+                    style={{ height: '15%', width: '100%', marginTop: 40 }}
+                    resizeMode={'contain'}
+                />
 
                 <FlatList
                     data={this.props.list}
                     renderItem={ value => this._renderItem(value) }
                     keyExtractor={ (item, i) => 'cell' + item.id }
                     extraData={this.props}
-                    style={{paddingTop: 40}}
+                    numColumns={2}
+                    style={{marginTop: 20}}
                 />
 
                 { this._renderActivityIndicator() }     
